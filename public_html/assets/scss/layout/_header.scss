@@ -7,6 +7,9 @@
 		height: 100%;
 		@include d-flex;
 		align-items: center;
+		max-width: 100%;
+		padding: 0;
+		margin: 0 auto;
 
 		.infos {
 			margin-top: 120px;

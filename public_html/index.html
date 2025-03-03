@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <meta name="description" content="Start your development with Steller landing page.">
     <meta name="author" content="Devcrud">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Steller Landing page | Free Bootstrap 4.1 landing page</title>
     <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
@@ -500,68 +501,119 @@ Naive Bayes to build a predictive model.
         <h2 class="cert-heading">Certifications</h2>
         
         <style>
-        /* Unique CSS for certification carousel */
-        .cert-heading {
-          text-align: center;
-          font-size: 32px;
-          color: #333;
-          margin-bottom: 20px;
-          font-weight: bold;
-          font-family: 'Poppins', sans-serif;
-        }
-        
-        .cert-carousel {
-          display: flex;
-          overflow: hidden;
-          width: 800px;
-          height: 500px;
-          margin: auto;
-          position: relative;
-        }
-        
-        .cert-card {
-          min-width: 800px;
-          height: 500px;
-          background-color: #f2f2f2;
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-          transition: transform 0.5s ease-in-out;
-          font-family: 'Poppins', sans-serif;
-        }
-        
-        .cert-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-        
-        .carousel-container {
-          display: flex;
-          transition: transform 0.5s ease-in-out;
-        }
-        
-        .carousel-btn {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          background-color: rgba(0, 0, 0, 0.5);
-          color: white;
-          border: none;
-          padding: 10px;
-          cursor: pointer;
-        }
-        
-        .prev {
-          left: 10px;
-        }
-        
-        .next {
-          right: 10px;
-        }
+       /* Unique CSS for certification carousel */
+.cert-heading {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Responsive Certification Carousel */
+.cert-carousel {
+  display: flex;
+  overflow: hidden;
+  width: 90%;
+  max-width: 800px;
+  height: auto;
+  margin: auto;
+  position: relative;
+}
+
+/* Certification Cards */
+.cert-card {
+  min-width: 100%;
+  height: auto;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Ensuring Images Are Fully Visible */
+.cert-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Default for desktop */
+}
+
+/* Carousel Container */
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Navigation Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .cert-heading {
+    font-size: 1.5rem;
+  }
+  
+  .cert-carousel {
+    width: 95%;
+  }
+
+  .cert-card {
+    height: auto;
+  }
+
+  .cert-card img {
+    object-fit: contain; /* Prevents cropping on mobile */
+  }
+
+  .carousel-btn {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cert-heading {
+    font-size: 1.2rem;
+  }
+
+  .cert-card {
+    height: auto;
+  }
+
+  .cert-card img {
+    object-fit: contain; /* Ensures full visibility of images */
+  }
+
+  .carousel-btn {
+    padding: 6px;
+    font-size: 12px;
+  }
+}
+
+
         </style>
         
         <div class="cert-carousel">
