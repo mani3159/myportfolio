@@ -80,11 +80,15 @@
                         <i class="ti-github"></i>
                     </a>
                 </div>
-                
+              
                 
 
 
-            </div>    
+            </div>   
+            <div class="img-holder">
+                <img src="assets/imgs/man.svg" alt="">
+            </div>  
+             
                       
                  
         </div>  
@@ -496,20 +500,11 @@ Naive Bayes to build a predictive model.
     <!--Certifications-->
     <section id="cert" class="section">
 
-        <h2 class="cert-heading">Certifications</h2>
+        <h2 class="text-center mb-4">My Certifications</h2>
         
-        <style>
-       /* Unique CSS for certification carousel */
-.cert-heading {
-  text-align: center;
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
-  font-weight: bold;
-  font-family: 'Poppins', sans-serif;
-}
+<style>
 
-/* Responsive Certification Carousel */
+  /* Certification Carousel */
 .cert-carousel {
   display: flex;
   overflow: hidden;
@@ -520,10 +515,17 @@ Naive Bayes to build a predictive model.
   position: relative;
 }
 
+/* Carousel Container */
+.carousel-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
 /* Certification Cards */
 .cert-card {
   min-width: 100%;
-  height: auto;
+  height: 500px; /* Default height */
   background-color: #f2f2f2;
   border-radius: 10px;
   display: flex;
@@ -531,21 +533,14 @@ Naive Bayes to build a predictive model.
   justify-content: center;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.5s ease-in-out;
   font-family: 'Poppins', sans-serif;
 }
 
-/* Ensuring Images Are Fully Visible */
+/* Image Styling - Ensuring Full Visibility */
 .cert-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* Default for desktop */
-}
-
-/* Carousel Container */
-.carousel-container {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+  object-fit: contain; /* Ensures full image is visible */
 }
 
 /* Navigation Buttons */
@@ -558,6 +553,7 @@ Naive Bayes to build a predictive model.
   border: none;
   padding: 10px;
   cursor: pointer;
+  z-index: 100;
 }
 
 .prev {
@@ -568,22 +564,14 @@ Naive Bayes to build a predictive model.
   right: 10px;
 }
 
-/* Media Queries for Responsiveness */
+/* Media Queries for Full Mobile Support */
 @media (max-width: 768px) {
-  .cert-heading {
-    font-size: 1.5rem;
-  }
-  
   .cert-carousel {
     width: 95%;
   }
 
   .cert-card {
-    height: auto;
-  }
-
-  .cert-card img {
-    object-fit: contain; /* Prevents cropping on mobile */
+    height: 350px;
   }
 
   .carousel-btn {
@@ -593,16 +581,12 @@ Naive Bayes to build a predictive model.
 }
 
 @media (max-width: 480px) {
-  .cert-heading {
-    font-size: 1.2rem;
-  }
-
   .cert-card {
-    height: auto;
+    height: 300px;
   }
 
   .cert-card img {
-    object-fit: contain; /* Ensures full visibility of images */
+    object-fit: contain; /* Ensures no cropping */
   }
 
   .carousel-btn {
@@ -612,37 +596,84 @@ Naive Bayes to build a predictive model.
 }
 
 
-        </style>
+</style>
+
+
+
         
         <div class="cert-carousel">
           <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
           <div class="carousel-container">
-            <div class="cert-card"><img src="assets/imgs/cert1.png" alt="Certification 1"></div>
-            <div class="cert-card"><img src="assets/imgs/cert2.png" alt="Certification 2"></div>
+            <div class="cert-card"><img src="assets/imgs/cert1.jpg" alt="Certification 1"></div>
+            <div class="cert-card"><img src="assets/imgs/cert2.jpg" alt="Certification 2"></div>
             <div class="cert-card"><img src="assets/imgs//cert3.jpg" alt="Certification 3"></div>
           </div>
           <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
         </div>
         
         <script>
-        let index = 0;
-        const slides = document.querySelectorAll(".cert-card");
-        const totalSlides = slides.length;
-        
-        function showSlide(n) {
-          index = (n + totalSlides) % totalSlides;
-          document.querySelector(".carousel-container").style.transform = `translateX(-${index * 800}px)`;
-        }
-        
-        function nextSlide() {
-          showSlide(index + 1);
-        }
-        
-        function prevSlide() {
-          showSlide(index - 1);
-        }
-        
-        setInterval(nextSlide, 8000);
+       const carouselContainer = document.querySelector(".carousel-container");
+const cards = document.querySelectorAll(".cert-card");
+const totalCards = cards.length;
+let currentIndex = 0;
+let autoSlide;
+
+// Function to update carousel position
+function updateCarousel() {
+  const offset = -currentIndex * 100; // Moves one full slide at a time
+  carouselContainer.style.transition = "transform 0.5s ease-in-out";
+  carouselContainer.style.transform = `translateX(${offset}%)`;
+}
+
+// Function for next slide
+function nextSlide() {
+  currentIndex++;
+  if (currentIndex >= totalCards) {
+    currentIndex = 0; // Loop back to first slide
+  }
+  updateCarousel();
+}
+
+// Function for previous slide
+function prevSlide() {
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = totalCards - 1; // Go to last slide
+  }
+  updateCarousel();
+}
+
+// Auto-slide every 3 seconds
+function startAutoSlide() {
+  autoSlide = setInterval(nextSlide, 3000);
+}
+
+// Stop auto-slide when user interacts
+function stopAutoSlide() {
+  clearInterval(autoSlide);
+}
+
+// Attach event listeners
+document.querySelector(".prev").addEventListener("click", () => {
+  stopAutoSlide();
+  prevSlide();
+  startAutoSlide();
+});
+document.querySelector(".next").addEventListener("click", () => {
+  stopAutoSlide();
+  nextSlide();
+  startAutoSlide();
+});
+
+// Start auto-slide on page load
+startAutoSlide();
+
+// Fix issue on mobile resize (prevents width jump)
+window.addEventListener("resize", () => {
+  currentIndex = 0;
+  updateCarousel();
+});
+
         </script>
         
         </section>
@@ -788,7 +819,7 @@ Naive Bayes to build a predictive model.
                 <div class="contact-card">
                     <i class="fas fa-envelope"></i>
                     <h5>Email</h5>
-                    <p>manikumar96462@gmail.com</p>
+                    <a href="manikumar96462@gmail.com">manikumar96462@gmail.com</a>
                 </div>
             </div>
         </div>
