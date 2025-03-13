@@ -12,14 +12,63 @@
     <!-- Bootstrap + Steller main styles -->
 	<link rel="stylesheet" href="assets/css/steller.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/themify-icons/0.1.2/css/themify-icons.css">
+    <style>
+        .hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform;
+}
 
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+    </style>
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const hiddenElements = document.querySelectorAll(".hidden");
+
+    function handleScroll() {
+        hiddenElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.85) { // Trigger when 85% visible
+                el.classList.add("show");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Trigger on page load in case elements are already in view
+});
+
+    </script>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
     <!-- Page navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-spy="affix" data-offset-top="0">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="assets/imgs/logo.svg" alt=""></a>
+            <style>
+                .brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff5733; /* Choose a color that fits your theme */
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.brand-name:hover {
+    color: #ff3300; /* Slightly darker shade on hover */
+    text-shadow: 2px 2px 8px rgba(255, 87, 51, 0.5);
+}
+
+            </style>
+            <a href="#" class="brand-name">Manikumar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,25 +107,95 @@
         <div class="container">
             <div class="infos">
             
-                <h6 class="subtitle">hello,I'm</h6>
-                <h6 class="title">Manikumar</h6>
-                <p>RPA&ML Developer</p>
+                <h1 class="animated-text">Hello, I'm <span style="color: #007bff;">Manikumar</span></h1>
+                <h3 class="animated-text" style="animation-delay: 0.3s;">RPA & ML Developer</h3>
 
                 <div class="buttons pt-3">
                     <button class="btn btn-dark rounded" onclick="window.open('https://drive.google.com/file/d/1hJEL5LhtmPrIIk-_JNwqONr4_R0vV_LF/view?usp=sharing', '_blank')">
                         DOWNLOAD CV
                     </button>
                 </div>
-                      
+                    <style>
+                       .social-item {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-item:hover {
+    color: #007bff;
+}
+
+/* Tooltip Styling */
+.social-item::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Adding arrow */
+.social-item::before {
+    content: "";
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.85) transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.social-item:hover::after,
+.social-item:hover::before {
+    opacity: 1;
+    visibility: visible;
+    bottom: 160%;
+}
+.animated-text {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+                    </style>  
 
                 <div class="socials mt-4">
-                    <a class="social-item" href="https://www.linkedin.com/in/manikumar-modala?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+                    <a class="social-item" title="linkedin" href="https://www.linkedin.com/in/manikumar-modala?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
                         <i class="ti-linkedin"></i>
                     </a>
-                    <a class="social-item" href="https://apna.co/modala-nemali-manikumar-6btway4" target="_blank">
+                    <a class="social-item" href="https://apna.co/modala-nemali-manikumar-6btway4" target="_blank" title="apna">
                         <i class="ti-briefcase"></i>
                     </a>
-                    <a class="social-item" href="https://github.com/mani3159" target="_blank">
+                    <a class="social-item" title="github" href="https://github.com/mani3159" target="_blank">
                         <i class="ti-github"></i>
                     </a>
                 </div>
@@ -99,7 +218,7 @@
     <!-- End of Page Header -->
     
     <!-- About section -->
-    <section id="about" class="section mt-3">
+    <section id="about" class="section mt-3 hidden">
         <div class="container mt-5">
             <div class="row text-center text-md-left">
                 <div class="col-md-3">
@@ -118,7 +237,7 @@
     </section>
 
 
-    <section id="education">
+    <section id="education" class="hidden">
         <style>
 
 #education {
@@ -223,24 +342,24 @@
         <h2>
             <div class="logo">
                 <!-- Replace the SVG code below with your own SVG logo code -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" title="My Education">
                     <path d="M12 0L15.09 8H8.91L12 0zM0 12l8-3.09l3.09 8L0 12zm12 0l3.09 8L24 12l-8 3.09z"/>
                 </svg>
             </div>
             My Educational Journey
         </h2>
-        <div class="timeline">
+        <div class="timeline" title="Bachelor's">
             <div class="timeline-item">
                 <h3>2022-2026</h3>
                 <p><strong>Degree:</strong> Bachelor's in Artificial Engineering</p>
                 <p><strong>Institution:</strong>SVR Engineering College</p>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" title="PUC">
                 <h3>2020-2022</h3>
                 <p><strong>Degree:</strong>Pre Universtity Course</p>
                 <p><strong>Institution:</strong> Rajiv Gandhi University of Knowledge Technologies</p>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item" title="Schooling">
                 <h3>2007-2020</h3>
                 <p><strong>Course:</strong> Schooling</p>
                 <p><strong>Institution:</strong>Keshava Reedy School</p>
@@ -263,7 +382,7 @@
 
 
     <!-- Service section -->
-    <section id="service" class="section">
+    <section id="service" class="section hidden" >
         <div class="container text-center">
             <h6 class="subtitle">Service</h6>
             <h6 class="section-title mb-4">What I Do</h6>
@@ -315,7 +434,7 @@
     <!-- End of Sectoin -->
 
     <!-- Skills section -->
-    <section class="section">
+    <section class="section hidden">
         <div class="container text-center">
             <h6 class="subtitle">Skills</h6>
             <h6 class="section-title mb-4">Why Choose me</h6>
@@ -342,7 +461,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <h6 class="mb-3">C# .net Winform</h6>
+                    <h6 class="mb-3">C# .net </h6>
                     <div class="progress">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>40%</span></div>
                     </div>
@@ -359,324 +478,385 @@
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 62%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>40%</span></div>
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <h6 class="mb-3">git and GitHub</h6>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span>40%</span></div>
+                    </div>
+                </div>
             </div>  
         </div>
     </section>
     <!-- End of Skills sections -->
 
     <!-- Portfolio section -->
-    <section id="portfolio" class="section">
+    <section id="portfolio" class="section hidden">
         <div class="container text-center">
             <h6 class="subtitle">Portfolio</h6>
             <h6 class="section-title mb-4">Check My Wonderful Projects</h6><br>
+    
             <style>
+                /* Importing Google Fonts */
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;400&display=swap');
+    
                 /* Flex container for side-by-side cards */
-.card-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between cards */
-    flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
-    padding: 20px;
-}
-
-/* Responsive Card Design */
-.card2 {
-    width: 90%;
-    max-width: 320px;
-    background: #FAF3E0; /* Milky White */
-    transition: 0.5s ease-in-out;
-    clip-path: polygon(
-        30px 0%,
-        100% 0,
-        100% calc(100% - 30px),
-        calc(100% - 30px) 100%,
-        0 100%,
-        0% 30px
-    );
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5em;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Logo Styling */
-.card2 .img {
-    width: 60px;
-    height: 60px;
-    background: white;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.8em;
-}
-
-.card2 .img img {
-    width: 80%;
-    height: 80%;
-}
-
-/* Text Styling */
-.card2 span {
-    font-weight: bold;
-    color: #333; /* Dark Gray */
-    font-size: 1.2em;
-}
-
-.card2 .info {
-    font-weight: 400;
-    color: #444;
-    font-size: 0.9em;
-    margin: 0.8em;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .card-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
+                .card-container {
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px; /* Space between cards */
+                    flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+                    padding: 20px;
+                }
+    
+                /* Responsive Card Design */
+                .card2 {
+                    width: 320px; /* Fixed width for better alignment */
+                    background: #FAF3E0; /* Milky White */
+                    transition: transform 0.4s ease, box-shadow 0.4s ease;
+                    clip-path: polygon(
+                        30px 0%,
+                        100% 0,
+                        100% calc(100% - 30px),
+                        calc(100% - 30px) 100%,
+                        0 100%,
+                        0% 30px
+                    );
+                    border-top-right-radius: 20px;
+                    border-bottom-left-radius: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 1.5em;
+                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+                    text-align: center;
+                }
+    
+                /* Hover Effect - Lift and Glow */
+                .card2:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+                }
+    
+                /* Logo Container */
+                .card2 .img {
+                    width: 60px;
+                    height: 60px;
+                    background: white;
+                    border-radius: 15px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 0.8em;
+                    transition: box-shadow 0.4s ease, transform 0.3s ease;
+                }
+    
+                /* Image inside the logo container */
+                .card2 .img img {
+                    width: 80%;
+                    height: 80%;
+                    transition: transform 0.3s ease;
+                }
+    
+                /* Hover Effect - Glowing Logo */
+                .card2:hover .img {
+                    box-shadow: 0px 0px 10px rgba(0, 140, 255, 0.6);
+                }
+    
+                /* Hover Effect - Slight Icon Scale */
+                .card2:hover .img img {
+                    transform: scale(1.1);
+                }
+    
+                /* Project Title Styling */
+                .card2 span {
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 600; /* Bold for emphasis */
+                    font-size: 1.2em;
+                    color: #333; /* Dark color for better visibility */
+                    transition: color 0.3s ease;
+                }
+    
+                /* Text Color Change on Hover */
+                .card2:hover span {
+                    color: #007bff;
+                }
+    
+                /* Project Description Styling */
+                .card2 p {
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 400;
+                    font-size: 0.95em;
+                    color: #555; /* Medium-dark color for better readability */
+                    line-height: 1.6; /* Improves readability */
+                    margin-top: 10px;
+                    padding: 0 10px;
+                    text-align: justify;
+                }
+    
+                /* Responsive Styles for Mobile View */
+                @media (max-width: 768px) {
+                    .card-container {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+    
+                    .card2 {
+                        width: 90%; /* Take full width on smaller screens */
+                    }
+                }
             </style>
-            
+    
             <!-- Container for Side-by-Side Cards -->
-            <!-- Container for Side-by-Side Cards -->
-<div class="card-container">
-    <!-- WhatsApp Automation Card -->
-    <div class="card2">
-        <div class="img">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
-        </div>
-        <span>Excel-Driven WhatsApp Automation</span>
-        <p class="info">
-            Implemented a scalable WhatsApp automation solution using UiPath RPA. Streamlined messaging
-            processes by automating outreach to a targeted contact list stored in an Excel spreadsheet. Enhanced
-            communication efficiency through personalized message delivery, contributing to overall productivity gains.
-        </p>
-    </div>
-
-    <!-- ID Card Generator Card -->
-    <div class="card2">
-        <div class="img">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="ID Card Logo">
-        </div>
-        <span>Identity Card Generator using UiPath RPA</span>
-        <p class="info">
-            Developed an RPA model to automate the process of generating student ID cards by extracting
-            data from a student database in Excel and populating it into a predefined ID card template in another Excel
-            file. This model ensures efficient data handling, error checking, and supports dynamic formats for
-            scalability. 
-        </p>
-    </div>
-
-    <!-- Green Farming Card -->
-    <div class="card2">
-        <div class="img">
-            <img src="https://cdn-icons-png.flaticon.com/512/1163/1163765.png" alt="Plant Logo">
-        </div>
-        <span>Crop Prediction based on climatic conditions</span>
-        <p class="info">
-            Developed a machine learning model to predict the suitable crops according to the climatic
-conditions. This is achieved by utilizing historical weather data like temperature, precipitation, humidity
-and identify correlations and patterns influencing agricultural productivity. Employed algorithms like
-Naive Bayes to build a predictive model.
-        </p>
-    </div>
-</div>
-
-            
-     
-            
-
+            <div class="card-container">
+                <!-- WhatsApp Automation Card -->
+                <div class="card2">
+                    <div class="img">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
+                    </div>
+                    <span>Excel-Driven WhatsApp Automation</span>
+                    <p>
+                        Implemented a scalable WhatsApp automation solution using UiPath RPA. Streamlined messaging
+                        processes by automating outreach to a targeted contact list stored in an Excel spreadsheet.
+                        Enhanced communication efficiency through personalized message delivery, contributing to overall productivity gains.
+                    </p>
+                </div>
+    
+                <!-- ID Card Generator Card -->
+                <div class="card2">
+                    <div class="img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="ID Card Logo">
+                    </div>
+                    <span>Identity Card Generator using UiPath RPA</span>
+                    <p>
+                        Developed an RPA model to automate the process of generating student ID cards by extracting
+                        data from a student database in Excel and populating it into a predefined ID card template in another Excel
+                        file. This model ensures efficient data handling, error checking, and supports dynamic formats for
+                        scalability.
+                    </p>
+                </div>
+    
+                <!-- Green Farming Card -->
+                <div class="card2">
+                    <div class="img">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1163/1163765.png" alt="Plant Logo">
+                    </div>
+                    <span>Crop Prediction based on climatic conditions</span>
+                    <p>
+                        Developed a machine learning model to predict the suitable crops according to the climatic
+                        conditions. This is achieved by utilizing historical weather data like temperature, precipitation, humidity,
+                        and identifying correlations and patterns influencing agricultural productivity. Employed algorithms like
+                        Naive Bayes to build a predictive model.
+                    </p>
+                </div>
+            </div>
+    
         </div>
     </section>
+    
    
     <!--Certifications-->
-    <section id="cert" class="section">
-
-        <h2 class="text-center mb-4">My Certifications</h2>
-        
-<style>
-
-  /* Certification Carousel */
-.cert-carousel {
-  display: flex;
-  overflow: hidden;
-  width: 90%;
-  max-width: 800px;
-  height: auto;
-  margin: auto;
-  position: relative;
-}
-
-/* Carousel Container */
-.carousel-container {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-}
-
-/* Certification Cards */
-.cert-card {
-  min-width: 100%;
-  height: 500px; /* Default height */
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Image Styling - Ensuring Full Visibility */
-.cert-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Ensures full image is visible */
-}
-
-/* Navigation Buttons */
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 100;
-}
-
-.prev {
-  left: 10px;
-}
-
-.next {
-  right: 10px;
-}
-
-/* Media Queries for Full Mobile Support */
-@media (max-width: 768px) {
-  .cert-carousel {
-    width: 95%;
-  }
-
-  .cert-card {
-    height: 350px;
-  }
-
-  .carousel-btn {
-    padding: 8px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .cert-card {
-    height: 300px;
-  }
-
-  .cert-card img {
-    object-fit: contain; /* Ensures no cropping */
-  }
-
-  .carousel-btn {
-    padding: 6px;
-    font-size: 12px;
-  }
-}
-
-
-</style>
-
-
-
-        
-        <div class="cert-carousel">
-          <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
-          <div class="carousel-container">
-            <div class="cert-card"><img src="assets/imgs/cert1.jpg" alt="Certification 1"></div>
-            <div class="cert-card"><img src="assets/imgs/cert2.jpg" alt="Certification 2"></div>
-            <div class="cert-card"><img src="assets/imgs//cert3.jpg" alt="Certification 3"></div>
-          </div>
-          <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+    <section id="cert" class="section hidden">
+        <h2 class="text-center mb-4">📜 My Certifications</h2>
+    
+        <style>
+            /* Section Styling */
+            #cert {
+                text-align: center;
+                padding: 50px 0;
+                background-color: #f8f9fa;
+            }
+    
+            /* Carousel Container */
+            .cert-carousel {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 80%;
+                max-width: 1000px;
+                margin: auto;
+                position: relative;
+                border-radius: 15px;
+                background: #fff;
+                box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+                padding: 30px;
+                overflow: hidden;
+            }
+    
+            /* Main Carousel */
+            .carousel-container {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+                width: 100%;
+            }
+    
+            /* Certification Cards */
+            .cert-card {
+                min-width: 100%;
+                height: auto;
+                background: #fff;
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                font-family: 'Poppins', sans-serif;
+                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+                padding: 20px;
+            }
+    
+            /* Image Styling */
+            .cert-card img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+                border-radius: 10px;
+                transition: transform 0.3s ease-in-out;
+            }
+    
+            /* Zoom Effect on Hover */
+            .cert-card:hover img {
+                transform: scale(1.02);
+            }
+    
+            /* Navigation Buttons */
+            .carousel-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: rgba(0, 0, 0, 0.4);
+                color: white;
+                border: none;
+                padding: 12px 16px;
+                cursor: pointer;
+                z-index: 100;
+                font-size: 24px;
+                border-radius: 50%;
+                transition: 0.3s ease-in-out;
+            }
+    
+            .carousel-btn:hover {
+                background-color: #007bff;
+                box-shadow: 0px 0px 15px rgba(0, 123, 255, 0.8);
+            }
+    
+            .prev {
+                left: 10px;
+            }
+    
+            .next {
+                right: 10px;
+            }
+    
+            /* Pagination Dots */
+            .carousel-dots {
+                display: flex;
+                justify-content: center;
+                margin-top: 15px;
+            }
+    
+            .dot {
+                width: 12px;
+                height: 12px;
+                margin: 5px;
+                background-color: #bbb;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+    
+            .dot.active {
+                background-color: #007bff;
+                box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.8);
+            }
+    
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .cert-carousel {
+                    width: 95%;
+                    padding: 20px;
+                }
+    
+                .carousel-btn {
+                    padding: 8px;
+                    font-size: 18px;
+                }
+            }
+        </style>
+    
+        <div class="cert-carousel hidden">
+            <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+            <div class="carousel-container">
+                <div class="cert-card"><img src="assets/imgs/cert1.jpg" alt="Certification 1"></div>
+                <div class="cert-card"><img src="assets/imgs/cert2.jpg" alt="Certification 2"></div>
+                <div class="cert-card"><img src="assets/imgs/cert3.jpg" alt="Certification 3"></div>
+            </div>
+            <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
         </div>
-        
+    
+        <div class="carousel-dots">
+            <span class="dot" onclick="changeSlide(0)"></span>
+            <span class="dot" onclick="changeSlide(1)"></span>
+            <span class="dot" onclick="changeSlide(2)"></span>
+        </div>
+    
         <script>
-       const carouselContainer = document.querySelector(".carousel-container");
-const cards = document.querySelectorAll(".cert-card");
-const totalCards = cards.length;
-let currentIndex = 0;
-let autoSlide;
-
-// Function to update carousel position
-function updateCarousel() {
-  const offset = -currentIndex * 100; // Moves one full slide at a time
-  carouselContainer.style.transition = "transform 0.5s ease-in-out";
-  carouselContainer.style.transform = `translateX(${offset}%)`;
-}
-
-// Function for next slide
-function nextSlide() {
-  currentIndex++;
-  if (currentIndex >= totalCards) {
-    currentIndex = 0; // Loop back to first slide
-  }
-  updateCarousel();
-}
-
-// Function for previous slide
-function prevSlide() {
-  currentIndex--;
-  if (currentIndex < 0) {
-    currentIndex = totalCards - 1; // Go to last slide
-  }
-  updateCarousel();
-}
-
-// Auto-slide every 3 seconds
-function startAutoSlide() {
-  autoSlide = setInterval(nextSlide, 3000);
-}
-
-// Stop auto-slide when user interacts
-function stopAutoSlide() {
-  clearInterval(autoSlide);
-}
-
-// Attach event listeners
-document.querySelector(".prev").addEventListener("click", () => {
-  stopAutoSlide();
-  prevSlide();
-  startAutoSlide();
-});
-document.querySelector(".next").addEventListener("click", () => {
-  stopAutoSlide();
-  nextSlide();
-  startAutoSlide();
-});
-
-// Start auto-slide on page load
-startAutoSlide();
-
-// Fix issue on mobile resize (prevents width jump)
-window.addEventListener("resize", () => {
-  currentIndex = 0;
-  updateCarousel();
-});
-
+            const carouselContainer = document.querySelector(".carousel-container");
+            const cards = document.querySelectorAll(".cert-card");
+            const dots = document.querySelectorAll(".dot");
+            const totalCards = cards.length;
+            let currentIndex = 0;
+            let autoSlide;
+    
+            // Function to update carousel position
+            function updateCarousel() {
+                const offset = -currentIndex * 100;
+                carouselContainer.style.transition = "transform 0.5s ease-in-out";
+                carouselContainer.style.transform = `translateX(${offset}%)`;
+    
+                // Update active dot
+                dots.forEach(dot => dot.classList.remove("active"));
+                dots[currentIndex].classList.add("active");
+            }
+    
+            // Next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalCards;
+                updateCarousel();
+            }
+    
+            // Previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+                updateCarousel();
+            }
+    
+            // Change slide using dots
+            function changeSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+    
+            // Auto-slide every 3 seconds
+            function startAutoSlide() {
+                autoSlide = setInterval(nextSlide, 3000);
+            }
+    
+            // Stop auto-slide when interacting
+            function stopAutoSlide() {
+                clearInterval(autoSlide);
+            }
+    
+            document.querySelector(".prev").addEventListener("click", stopAutoSlide);
+            document.querySelector(".next").addEventListener("click", stopAutoSlide);
+    
+            // Start auto-slide
+            startAutoSlide();
         </script>
-        
-        </section>
+    
+    </section>
+    
 
        
        
@@ -690,7 +870,7 @@ window.addEventListener("resize", () => {
        
        
        
-        <section id="achievements" class="container my-5">
+        <section id="achievements" class="container my-5 hidden">
             <style>
                 .achievement-card {
     background: white;
